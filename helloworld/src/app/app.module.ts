@@ -3,21 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { AppService } from './app.service';
 
 import { HttpClientModule } from '@angular/common/http';
 
-
+import { RouterModule, Routes } from '@angular/router';
+import { SomethingelseComponent } from './somethingelse/somethingelse.component';
+import { ReportbuilderComponent } from './reportbuilder/reportbuilder.component';
+import { DownloadserviceService } from './downloadservice.service';
+const routes: Routes = [
+  { path: "", component: AppComponent },
+  { path: "reportbuilder", component: ReportbuilderComponent },
+  { path: "somethingelse", component: SomethingelseComponent },
+]
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SomethingelseComponent,
+    ReportbuilderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [AppService],
+  providers:[DownloadserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

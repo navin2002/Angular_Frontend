@@ -1,49 +1,15 @@
 <div>
-
-  <form #queryForm="ngForm" (ngSubmit)="onSubmitQuery(queryForm)">
-    <div *ngIf="step==1">
-    <input type="text" name="cols" placeholder="Enter needed Columns" [(ngModel)] ="selectClause" ngModel>
-    </div>
-    <br> <br>
-    <div *ngIf="step==2">
-    <input type="text" name="rows" placeholder="Enter filter criteria"  [(ngModel)] ="whereClause" ngModel>
-     </div>
-    <br><br>
+  <nav >
 
 
 
-    <button (click)=next() *ngIf="step==1">Next</button>
-    <button (click)=previous() *ngIf="step==2">Previous</button>
-    <input type="submit" value="submit query" *ngIf="step==2">
+        <ul>
+        <a  routerLink="somethingelse" routerLinkActive="active">somethingelse</a>
+          <br> <br>
+        <a  routerLink="reportbuilder" routerLinkActive="active">reportbuilder</a>
+        </ul>
 
-  </form>
-  <div *ngIf="step==3">
-  <p>your query : select {{ selectClause }} from public.some where {{whereClause}}</p>
-  <br><br>
-  <p>received response {{ resp | json }}</p>
-
-
-  <table>
-    <tr>
-      <th *ngFor ="let c of columnheaders">
-        {{ c }}
-      </th>
-      <tr *ngFor ="let r of resp">
-        <td *ngFor="let c of columnheaders;let i=index">
-          {{ r[i] }}
-        </td>
-      </tr>
-  </table>
-  <button (click)=previous() >Previous</button>
-  <button (click)="ondownload()">download</button>
-  <button (click)="restart()">restart</button>
-  </div>
-
-
-
-
-
-
+  </nav>
 </div>
-
+<router-outlet></router-outlet>
 

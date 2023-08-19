@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-@Injectable(
-    {providedIn:'root'}
-)
-export class AppService {
+@Injectable({
+  providedIn: 'root'
+})
+export class DownloadserviceService  {
 downloadFile(data, filename='data',columns) {
         let csvData = this.ConvertToCSV(data,columns);
         console.log(csvData)
