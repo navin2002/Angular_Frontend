@@ -13,6 +13,19 @@
   <p>received response {{ resp | json }}</p>
 
 
+  <table>
+    <tr>
+      <th *ngFor ="let c of columnheaders">
+        {{ c }}
+      </th>
+      <tr *ngFor ="let r of resp">
+        <td *ngFor="let c of columnheaders;let i=index">
+          {{ r[i] }}
+        </td>
+      </tr>
+  </table>
+
+
 
 
 </div>

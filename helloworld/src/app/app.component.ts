@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';//in quotes
+import { AppService } from './app.service';
 
 
 @Component({
@@ -14,13 +15,15 @@ export class AppComponent {
   selectClause="";//imp neccessary for {{}}
   whereClause="";
   query=""
-  constructor(private http:HttpClient)
+  constructor(private http:HttpClient,private appService:AppService)
   {
 
   }
   geturl="http://localhost:5000/backend";
   request="";
   resp={};
+  columnheaders=this.selectClause.split(",");
+
 
 
   onSubmitQuery( some :{ cols :string , rows:string })
@@ -30,9 +33,12 @@ export class AppComponent {
     this.request=this.geturl+this.query;
 
     this.http.get(this.request).subscribe(
-      (res) =>{console.log(res);this.resp=res}
+      (res) =>{console.log(res);this.resp=res;this.columnheaders=this.selectClause.split(",");
+      this.appService.downloadFile(res, 'jsontocsv',this.columnheaders);}
     )
 
+
   }
+
 
 }
