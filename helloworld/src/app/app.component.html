@@ -8,7 +8,7 @@
     <input type="submit" value="submit query">
 
   </form>
-  <p>your query : select {{ selectClause }} from table where {{whereClause}}</p>
+  <p>your query : select {{ selectClause }} from public.some where {{whereClause}}</p>
   <br><br>
   <p>received response {{ resp | json }}</p>
 

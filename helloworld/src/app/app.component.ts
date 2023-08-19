@@ -26,7 +26,7 @@ export class AppComponent {
   onSubmitQuery( some :{ cols :string , rows:string })
   {
 
-    this.query="/select "+this.selectClause+" from table where "+this.whereClause;
+    this.query="/select "+this.selectClause+" from public.some where "+this.whereClause;
     this.request=this.geturl+this.query;
 
     this.http.get(this.request).subscribe(
