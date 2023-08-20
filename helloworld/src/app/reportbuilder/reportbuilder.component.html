@@ -3,7 +3,18 @@
 
     <form #queryForm="ngForm" (ngSubmit)="onSubmitQuery(queryForm)">
       <div *ngIf="step==1">
-      <input type="text" name="cols" placeholder="Enter needed Columns" [(ngModel)] ="selectClause" ngModel>
+      <ng-multiselect-dropdown
+        [placeholder]="'select columns'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+        (onDeSelect)="onItemDeSelect($event)"
+      >
+      </ng-multiselect-dropdown>
+
+      <!--<input type="text" name="cols" placeholder="Enter needed Columns" [(ngModel)] ="selectClause" ngModel>-->
       </div>
       <br> <br>
       <div *ngIf="step==2">
@@ -13,7 +24,7 @@
 
 
 
-      <button (click)=next() *ngIf="step==1">Next</button>
+      <button (click)=clause()  (click)=next() *ngIf="step==1">Next</button>
       <button (click)=previous() *ngIf="step==2">Previous</button>
       <input type="submit" value="submit query" *ngIf="step==2">
 

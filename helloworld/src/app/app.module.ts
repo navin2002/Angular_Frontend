@@ -10,6 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SomethingelseComponent } from './somethingelse/somethingelse.component';
 import { ReportbuilderComponent } from './reportbuilder/reportbuilder.component';
 import { DownloadserviceService } from './downloadservice.service';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 const routes: Routes = [
   { path: "reportbuilder", component: ReportbuilderComponent },
   { path: "somethingelse", component: SomethingelseComponent },
@@ -24,7 +26,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers:[DownloadserviceService],
   bootstrap: [AppComponent]

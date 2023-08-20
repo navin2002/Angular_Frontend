@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';//in quotes
 import { NgForm } from '@angular/forms';
 import { DownloadserviceService } from '../downloadservice.service';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-reportbuilder',
@@ -21,6 +21,30 @@ export class ReportbuilderComponent {
   {
 
   }
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings:IDropdownSettings  = {};
+  ngOnInit()
+  {
+    this.dropdownList = [
+      { item_id: 1, item_text: 'id' },
+      { item_id: 2, item_text: 'name' },
+      { item_id: 3, item_text: 'age' },
+      { item_id: 4, item_text: 'dept' },
+    ];
+    this.selectedItems = [
+      //{ item_id: 1, item_text: 'id' },
+    ];
+    this.dropdownSettings= {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
   geturl="http://localhost:5000/backend";
   request="";
   resp={};
@@ -34,11 +58,11 @@ export class ReportbuilderComponent {
     this.step+=1;
   }
 
-  //form:any;
+  form:any;
 
   onSubmitQuery( some :NgForm)
   {
-    //this.form=some
+    this.form=some
     this.step+=1;
     this.query="/select "+this.selectClause+" from public.some where "+this.whereClause;
     this.request=this.geturl+this.query;
@@ -58,8 +82,27 @@ export class ReportbuilderComponent {
    restart()
    {
     this.step=1;
-    //this.form.reset();
+    this.form.reset();
    }
+
+   onItemSelect(item: any) {
+    this.selectedItems.push(item)
+
+  }
+  onItemDeSelect(item: any) {
+    this.selectedItems = this.selectedItems.filter(item => {return item !== this.selectedItems;});
+  }
+  clause()
+  {
+    this.selectClause="";
+    for (var x of this.selectedItems)
+    {
+      this.selectClause+=x["item_text"]+",";
+    }
+    this.selectClause=this.selectClause.substring(0, this.selectClause.length - 1);
+    this.selectedItems=[];//imp
+  }
+
 
 
 
