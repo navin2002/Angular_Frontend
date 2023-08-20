@@ -11,7 +11,6 @@ import { SomethingelseComponent } from './somethingelse/somethingelse.component'
 import { ReportbuilderComponent } from './reportbuilder/reportbuilder.component';
 import { DownloadserviceService } from './downloadservice.service';
 const routes: Routes = [
-  { path: "", component: AppComponent },
   { path: "reportbuilder", component: ReportbuilderComponent },
   { path: "somethingelse", component: SomethingelseComponent },
 ]
