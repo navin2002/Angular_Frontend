@@ -1,0 +1,40 @@
+
+
+    <form #imageForm="ngForm" (ngSubmit)="fetchImage(imageForm)">
+    <div class="col">
+    <!--<p>You select your team {{ selectedTeam }}</p>-->
+    <p>X axis </p>
+        <select #groupby (change)="onGroupSelect(groupby.value)">
+            <option default>id</option>
+            <option>name</option>
+            <option>age</option>
+            <option>dept</option>
+        </select>
+    <p>Y axis </p>
+        <select #column (change)="onColumnSelect(column.value)">
+            <option default>id</option>
+            <option>name</option>
+            <option>age</option>
+            <option>dept</option>
+        </select>
+    <p>aggregate </p>
+        <select #aggregate (change)="onAggregateSelect(aggregate.value)">
+            <option default>COUNT</option>
+            <option>MAX</option>
+            <option>MIN</option>
+            <option>AVG</option>
+        </select>
+
+
+
+    </div>
+
+    <input type="submit" value="fetch image">
+
+    </form>
+    <!--<p>{{groupby.value}}     {{column.value }}   {{ aggregate.value }}</p>
+    <p> {{ url }} </p>-->
+    <img [src]="url"
+     alt="Place image title"
+     *ngIf="!isimageloading">
+

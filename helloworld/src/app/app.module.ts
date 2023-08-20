@@ -11,16 +11,19 @@ import { SomethingelseComponent } from './somethingelse/somethingelse.component'
 import { ReportbuilderComponent } from './reportbuilder/reportbuilder.component';
 import { DownloadserviceService } from './downloadservice.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ImageService } from './image.service';
 
 const routes: Routes = [
   { path: "reportbuilder", component: ReportbuilderComponent },
-  { path: "somethingelse", component: SomethingelseComponent },
+  { path: "dashboardinsights", component: DashboardComponent },
 ]
 @NgModule({
   declarations: [
     AppComponent,
     SomethingelseComponent,
-    ReportbuilderComponent
+    ReportbuilderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers:[DownloadserviceService],
+  providers:[DownloadserviceService,ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
