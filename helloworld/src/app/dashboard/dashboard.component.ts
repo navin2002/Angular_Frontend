@@ -1,8 +1,20 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild  } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';//in quotes
+//import { HttpClient } from '@angular/common/http';//in quotes
 import { Observable } from 'rxjs';
 import { ImageService } from '../image.service';
+import { HttpService } from '../http.service';
+
+/*
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexTitleSubtitle
+} from "ng-apexcharts";
+*/
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +22,8 @@ import { ImageService } from '../image.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  //@ViewChild("chart") chart: ChartComponent;
+
 
   column:String="";//column to be grouped-yaxis
   groupby="";//x axis
@@ -17,27 +31,54 @@ export class DashboardComponent {
   url=""
   isimageloading=true;
   imageToShow: any;
-  constructor(private httpClient:HttpClient,private imageService:ImageService)
+  /*
+  public chartOptions= {
+    labels:["IT","MAths","Finance"],
+    series: [10,20,30],
+    chart: {
+      //height: 350,
+       type: 'donut'
+    },
+    title: {
+      text: "Pie Chart"
+    }
+
+  };
+  */
+  constructor(private httpClient:HttpService,private imageService:ImageService)
   {
 
+
   }
+  /*
+  public updateSeries() {
+    this.chartOptions.series = [23, 44, 1];
+  }
+  */
   fetchImage(form:NgForm)
   {
     this.url="http://localhost:3000/getimage/"+this.groupby+"/"+this.aggregate+"("+this.column+")";
-    this.getImageFromService(this.url);
+    this.isimageloading = false;
+    //this.getImageFromService(this.url);
 
   }
 
   getImageFromService(yourImageUrl) {
     this.isimageloading = true;
 
-    this.imageService.getImage(yourImageUrl).subscribe(data => {
-      this.createImageFromBlob(data);
-      this.isimageloading = false;
-    }, error => {
-      this.isimageloading = false;
-      console.log(error);
-    });
+    this.imageService.getImage(yourImageUrl).subscribe(
+      {
+        next: (data)=>{this.createImageFromBlob(data);
+        this.isimageloading = false;}
+        ,
+        error:(err)=>{
+          this.isimageloading = false;
+      console.log(err);
+        }
+      }
+    )
+
+
 
 }
 

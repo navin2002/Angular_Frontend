@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';//in quotes
+//import { HttpClient } from '@angular/common/http';//in quotes
 import { NgForm } from '@angular/forms';
 import { DownloadserviceService } from '../downloadservice.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-reportbuilder',
@@ -17,7 +18,7 @@ export class ReportbuilderComponent {
   whereClause="";
   query=""
   step=1;
-  constructor(private http:HttpClient,private appService:DownloadserviceService)
+  constructor(private http:HttpService,private appService:DownloadserviceService)
   {
 
   }

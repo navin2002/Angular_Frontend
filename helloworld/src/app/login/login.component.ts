@@ -17,6 +17,8 @@ export class LoginComponent {
   }
   loginUser()
   {
+    console.log("sending "+this.loginUserData.email+this.loginUserData.password)
+    console.log(JSON.stringify(this.loginUserData)+"sending ")
     this._auth.loginUser(this.loginUserData).subscribe(
       { next : res => {
           console.log(res)

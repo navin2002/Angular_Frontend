@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpService } from './http.service';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SomethingelseComponent } from './somethingelse/somethingelse.component';
@@ -18,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import {TokenInterceptorService} from './token-interceptor.service'
 import {authGuard} from './auth.guard';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,9 +43,10 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgApexchartsModule,
   ],
-  providers:[DownloadserviceService,ImageService,AuthService,
+  providers:[DownloadserviceService,ImageService,AuthService,HttpService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
