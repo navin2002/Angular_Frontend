@@ -3,8 +3,9 @@
   <nav >
 
     <ul>
-      <li><strong>NETX</strong></li>
+      <li><strong><a  routerLink="home" routerLinkActive="active">NETX</a></strong></li>
     </ul>
+
 
         <ul>
         <li>
@@ -15,6 +16,16 @@
          <li>
         <a  routerLink="reportbuilder" routerLinkActive="active">Report Builder</a>
         </li>
+        </ul>
+        <ul>
+          <a routerLink="/login" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Login</a>
+
+          <li>
+          <a routerLink="/register" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Register</a>
+          </li>
+          <li>
+          <a *ngIf="_authService.loggedIn()"  (click)="_authService.logoutUser()">Logout</a>
+          </li>
         </ul>
 
   </nav>
