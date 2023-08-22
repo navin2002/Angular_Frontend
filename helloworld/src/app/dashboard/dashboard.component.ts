@@ -2,7 +2,7 @@ import { Component,ViewChild  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //import { HttpClient } from '@angular/common/http';//in quotes
 import { Observable } from 'rxjs';
-import { ImageService } from '../image.service';
+//import { ImageService } from '../image.service';
 import { HttpService } from '../http.service';
 
 /*
@@ -45,7 +45,7 @@ export class DashboardComponent {
 
   };
   */
-  constructor(private httpClient:HttpService,private imageService:ImageService)
+  constructor(private httpClient:HttpService)
   {
 
 
@@ -62,6 +62,7 @@ export class DashboardComponent {
     //this.getImageFromService(this.url);
 
   }
+  /*
 
   getImageFromService(yourImageUrl) {
     this.isimageloading = true;
@@ -94,7 +95,7 @@ createImageFromBlob(image) {
       reader.readAsDataURL(image);
    }
 }
-
+*/
 
 
 	onGroupSelect(value:string): void {

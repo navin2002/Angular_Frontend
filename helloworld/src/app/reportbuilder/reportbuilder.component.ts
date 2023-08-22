@@ -91,7 +91,8 @@ export class ReportbuilderComponent {
 
   }
   onItemDeSelect(item: any) {
-    this.selectedItems = this.selectedItems.filter(item => {return item !== this.selectedItems;});
+   // this.selectedItems = this.selectedItems.filter(item => {return item !== this.selectedItems;});
+   this.selectedItems = this.selectedItems.filter(x=> {return x.item_id !== item.item_id;});
   }
   clause()
   {
@@ -102,6 +103,7 @@ export class ReportbuilderComponent {
     }
     this.selectClause=this.selectClause.substring(0, this.selectClause.length - 1);
     this.selectedItems=[];//imp
+    this.next();
   }
 
 

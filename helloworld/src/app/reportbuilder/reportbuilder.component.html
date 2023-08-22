@@ -3,6 +3,7 @@
 
     <form #queryForm="ngForm" (ngSubmit)="onSubmitQuery(queryForm)">
       <div *ngIf="step==1">
+        <!-- https://www.npmjs.com/package/ng-multiselect-dropdown -->
       <ng-multiselect-dropdown
         [placeholder]="'select columns'"
         [settings]="dropdownSettings"
@@ -19,12 +20,14 @@
       <br> <br>
       <div *ngIf="step==2">
       <input type="text" name="rows" placeholder="Enter filter criteria"  [(ngModel)] ="whereClause" ngModel>
+
        </div>
       <br><br>
 
 
 
-      <button (click)=clause()  (click)=next() *ngIf="step==1">Next</button>
+      <!--<button (click)=clause()  (click)=next() *ngIf="step==1">Next</button> -->
+      <button (click)=clause() *ngIf="step==1">Next</button>
       <button (click)=previous() *ngIf="step==2">Previous</button>
       <input type="submit" value="submit query" *ngIf="step==2">
 

@@ -13,7 +13,7 @@ import { ReportbuilderComponent } from './reportbuilder/reportbuilder.component'
 import { DownloadserviceService } from './downloadservice.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ImageService } from './image.service';
+//import { ImageService } from './image.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
@@ -46,7 +46,7 @@ const routes: Routes = [
     NgMultiSelectDropDownModule.forRoot(),
     NgApexchartsModule,
   ],
-  providers:[DownloadserviceService,ImageService,AuthService,HttpService,
+  providers:[DownloadserviceService,AuthService,HttpService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
